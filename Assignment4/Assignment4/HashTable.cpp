@@ -21,19 +21,31 @@ HashTable<HashItem>::~HashTable()
 }
 
 template<class HashItem>
-void HashTable<HashItem>::remove(string, HashEntry *)
+void HashTable<HashItem>::add(string key, HashEntry<HashItem>* item)
 {
 }
 
 template<class HashItem>
-HashEntry<HashItem>* HashTable<HashItem>::find(string, string)
+void HashTable<HashItem>::remove(string key, HashEntry<HashItem>* specific)
 {
+	int index = calculateIndex(key);
+
+}
+
+template<class HashItem>
+HashEntry<HashItem>* HashTable<HashItem>::find(string key, HashEntry<HashItem>* specific)
+{
+	int index = calculateIndex(key);
+	list<HashEntry<HashItem>*> listOfItems = table[index];
+	listOfItems
+	//HashEntry<HashItem>* dynamic_cast<HashEntry<Movie>*> (listOfItems);
 	return nullptr;
 }
 
 template<class HashItem>
-bool HashTable<HashItem>::contains(string, string)
+bool HashTable<HashItem>::contains(string key, HashEntry<HashItem>* specific)
 {
+	int index = calculateIndex(key);
 	return false;
 }
 

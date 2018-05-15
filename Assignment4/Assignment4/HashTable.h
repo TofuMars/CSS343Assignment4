@@ -3,6 +3,8 @@
 #include <string>
 #include <list>
 #include "HashEntry.h"
+#include "Movie.h"
+#include "Customer.h"
 using std::string;
 using std::list;
 #pragma once
@@ -15,10 +17,10 @@ private:
 public:
 	HashTable();
 	~HashTable();
-	void add(string, HashEntry*);
-	void remove(string, HashEntry*);
-	HashEntry<HashItem>* find(string, string);
-	bool contains(string, string);
+	void add(string, HashEntry<HashItem>*);
+	void remove(string, HashEntry<HashItem>*);
+	HashEntry<HashItem>* find(string, HashEntry<HashItem>*);
+	bool contains(string, HashEntry<HashItem>*);
 	void traverse(void(HashEntry<HashItem>*) visit);
 };
 #include "HashTable.cpp"
