@@ -21,7 +21,7 @@ public:
 	void remove(string, HashEntry<HashItem>*);
 	HashEntry<HashItem>* find(string, HashEntry<HashItem>*);
 	bool contains(string, HashEntry<HashItem>*);
-	void traverse(void(HashEntry<HashItem>*) visit);
+	void traverse(void visit (HashEntry<HashItem>*));
 };
 #include "HashTable.cpp"
 #endif

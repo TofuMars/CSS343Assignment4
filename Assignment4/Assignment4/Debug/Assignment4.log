@@ -1,10 +1,9 @@
-﻿  stdafx.cpp
-  Movie.cpp
-  DramaMovie.cpp
-  Customer.cpp
-  ComedyMovie.cpp
-  ClassicMovie.cpp
-  Assignment4.cpp
-  Generating Code...
+﻿  Assignment4.cpp
+c:\users\natha\documents\uw_stuff\2017-18\spring 2018\css343\assignment4\assignment4\hashtable.cpp(8): warning C4018: '<': signed/unsigned mismatch
+  c:\users\natha\documents\uw_stuff\2017-18\spring 2018\css343\assignment4\assignment4\hashtable.cpp(6): note: while compiling class template member function 'int HashTable<Movie *>::calculateIndex(std::string)'
+  c:\users\natha\documents\uw_stuff\2017-18\spring 2018\css343\assignment4\assignment4\hashtable.cpp(27): note: see reference to function template instantiation 'int HashTable<Movie *>::calculateIndex(std::string)' being compiled
+  c:\users\natha\documents\uw_stuff\2017-18\spring 2018\css343\assignment4\assignment4\hashtable.cpp(15): note: while compiling class template member function 'HashTable<Movie *>::HashTable(void)'
+  c:\users\natha\documents\uw_stuff\2017-18\spring 2018\css343\assignment4\assignment4\assignment4.cpp(23): note: see reference to function template instantiation 'HashTable<Movie *>::HashTable(void)' being compiled
+  c:\users\natha\documents\uw_stuff\2017-18\spring 2018\css343\assignment4\assignment4\assignment4.cpp(23): note: see reference to class template instantiation 'HashTable<Movie *>' being compiled
   Assignment4.vcxproj -> C:\Users\natha\Documents\UW_Stuff\2017-18\Spring 2018\CSS343\Assignment4\Debug\Assignment4.exe
   Assignment4.vcxproj -> C:\Users\natha\Documents\UW_Stuff\2017-18\Spring 2018\CSS343\Assignment4\Debug\Assignment4.pdb (Full PDB)
