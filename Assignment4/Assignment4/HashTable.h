@@ -5,6 +5,7 @@
 #include "HashEntry.h"
 #include "Movie.h"
 #include "Customer.h"
+#include "LinkedList.h"
 using std::string;
 using std::list;
 #pragma once
@@ -12,7 +13,8 @@ template<class HashItem>
 class HashTable
 {
 private:
-	list<HashEntry<HashItem>*>  table[101];
+	//list<HashEntry<HashItem>*>  table[101];
+	LinkedList<HashEntry<HashItem>*> table[101];
 	int calculateIndex(string key);
 public:
 	HashTable();

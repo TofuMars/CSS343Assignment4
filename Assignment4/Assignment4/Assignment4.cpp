@@ -24,6 +24,7 @@ int main()
 	ht.add(movie1->getKey(), movie1);
 	ht.add(movie2->getKey(), movie2);
 	ht.add(movie3->getKey(), movie3);
+	ht.remove(movie3->getKey(), movie3);
     return 0;
 }
 
