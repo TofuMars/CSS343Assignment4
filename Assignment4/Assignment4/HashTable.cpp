@@ -19,6 +19,7 @@ HashTable<HashItem>::HashTable()
 template<class HashItem>
 HashTable<HashItem>::~HashTable()
 {
+	clear();
 }
 
 // adds an entry at the specified key
@@ -113,4 +114,11 @@ void HashTable<HashItem>::traverse(void visit(HashEntry<HashItem>*))
 		//	it++;
 		//}
 	}
+}
+
+template<class HashItem>
+void HashTable<HashItem>::clear()
+{
+	for (int i = 0; i < 101; i++)
+		table[i].clear();
 }

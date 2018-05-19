@@ -36,6 +36,8 @@ void LinkedList<T1>::add(T1 item)
 	}
 	else
 	{
+		if (head->next == nullptr)
+			head->next = temp;
 		back->next = temp;
 		back = back->next;
 	}

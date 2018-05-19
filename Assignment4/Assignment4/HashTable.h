@@ -24,6 +24,7 @@ public:
 	HashEntry<HashItem>* find(string, HashEntry<HashItem>*);
 	bool contains(string, HashEntry<HashItem>*);
 	void traverse(void visit (HashEntry<HashItem>*));
+	void clear();
 };
 #include "HashTable.cpp"
 #endif
