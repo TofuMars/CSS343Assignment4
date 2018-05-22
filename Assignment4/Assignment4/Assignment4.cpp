@@ -8,6 +8,8 @@
 #include "Movie.h"
 #include "HashEntry.h"
 #include "HashTable.h"
+#include "Database.h"
+
 using std::cin;
 using std::cout;
 string getMovieKey(Movie* movie) { return movie->getKey(); }
@@ -15,6 +17,13 @@ void printMovieTitle(HashEntry<Movie*>* m) { cout << m->getItem()->getTitle() <<
 
 int main()
 {
+    Database database;
+    // Populate database
+
+    // Run commands from file
+
+    //Dump everything we have from the file?
+
 	//list<Movie*> movies;
 	DramaMovie* m1 = new DramaMovie(10, "Steven Spielberg", "Fat Albert", "1997");
 	ClassicMovie* m2 = new ClassicMovie(10, "Michael King", "Ink Spots", "1941", "2", "Bill Kenney");
