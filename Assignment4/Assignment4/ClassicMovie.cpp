@@ -4,14 +4,15 @@
 ClassicMovie::ClassicMovie(int stck, string dtor, string ttle, string yr, string mth, string lead) : Movie(stck, dtor, ttle, yr)
 {
 	month = mth;
-	leadActors.push_back(lead);
+	leadActors.add(lead);
 }
 
 ClassicMovie::~ClassicMovie()
 {
+	leadActors.clear();
 }
 
-list<string>& ClassicMovie::getLeadActors()
+LinkedList<string>& ClassicMovie::getLeadActors()
 {
 	// TODO: insert return statement here
 	return leadActors;
@@ -29,7 +30,7 @@ string ClassicMovie::getMonth()
 
 bool ClassicMovie::containsActor(string actor)
 {
-	return false;
+	return leadActors.contains(actor) >= 0;
 }
 
 bool ClassicMovie::operator==(const ClassicMovie & otherMovie) const
