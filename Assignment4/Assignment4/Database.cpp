@@ -27,6 +27,36 @@ void Database::dump()
 
 //Private /////////////////////////////////////////////////////////////////////
 
+void Database::populateMovies(const std::string filename){
+    string line; // Line read from file
+    std::ifstream file(filename);
+    string delimiter = ", ";
+
+    if (file.is_open()) {
+        while (std::getline(file, line)) {
+            char genre = line[0];
+            parseSubstring(line, delimiter);
+            switch (genre) {
+                case 'C':
+                    addClassic(line);
+                    break;
+                case 'D':
+                    addDrama(line);
+                    break;
+                case 'F':
+                    addComedy(line);
+                    break;
+                default:
+                    continue;
+            }
+        }
+        file.close();
+    }
+    else {
+        std::cout << "customers could not be populated" << std::endl;
+    }
+}
+
 // Helper method that goes through a file of movies and populates it
 void Database::populateCustomers(const std::string filename)
 {
@@ -68,7 +98,7 @@ void Database::populateCustomers(const std::string filename)
         file.close();
     }
     else {
-        std::cout << "movies could not be populated" << std::endl;
+        std::cout << "customers could not be populated" << std::endl;
     }
 }
 
@@ -82,6 +112,38 @@ bool Database::isValidCustomer(const string id)
         return false;
     }
     return true;
+}
+
+void Database::addComedy(string entry)
+{
+    //ComedyMovie* m3 = new ComedyMovie(10, "Steven Spielberg", "Romeo and Juliet", "1973");
+
+    int quantity;
+    string director;
+    string movie;
+    string year;
+}
+
+void Database::addDrama(string entry)
+{
+    //DramaMovie* m1 = new DramaMovie(10, "Steven Spielberg", "Fat Albert", "1997"
+
+    int quantity;
+    string director;
+    string movie;
+    string year;
+}
+
+void Database::addClassic(string entry)
+{
+    //ClassicMovie* m2 = new ClassicMovie(10, "Michael King", "Ink Spots", "1941", "2", "Bill Kenney");
+
+    int quantity;
+    string director;
+    string movie;
+    string year;
+    string month;
+    string actor; // Need to know how to add actor
 }
 
 // Parses a substring from a source given a delimiter. Concatonates the string

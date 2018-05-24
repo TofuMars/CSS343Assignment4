@@ -18,9 +18,12 @@ private:
     void populateMovies(const std::string filename);
     void populateCustomers(const std::string filename);
 
-    bool isValidMovie();
+    bool isValidMovie(string entry);
     bool isValidCustomer(const string id);
 
+    void addComedy(string entry);
+    void addDrama(string entry);
+    void addClassic(string entry);
 
     string parseSubstring(string& source, string delimiter);
 };
