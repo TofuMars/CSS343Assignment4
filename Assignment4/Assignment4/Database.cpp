@@ -86,8 +86,8 @@ void Database::populateCustomers(const std::string filename)
                 lastname = parseSubstring(line, delimiter);
 
                 // Create the contents and entry
-                Customer customer(id, firstname, lastname);
-                HashEntry<Customer>* entry = new HashEntry<Customer>(id, customer);
+                Customer* customer = new Customer(id, firstname, lastname);
+                HashEntry<Customer*>* entry = new HashEntry<Customer*>(id, customer);
 
                 // Check to see if it already exists (we don't need multiple entries)
                 if (!customers.contains(id, entry)) {

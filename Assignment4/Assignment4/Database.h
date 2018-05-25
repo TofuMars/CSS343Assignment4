@@ -12,8 +12,8 @@ public:
     void runCommands(const std::string filename);
     void dump();
 private:
-    HashTable<Customer> customers;
-    HashTable<Movie> movies;
+    HashTable<Customer*> customers;
+    HashTable<Movie*> movies;
 
     void populateMovies(const std::string filename);
     void populateCustomers(const std::string filename);
