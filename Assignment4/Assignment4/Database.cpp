@@ -2,9 +2,158 @@
 
 //Public //////////////////////////////////////////////////////////////////////
 
-void printMovies(HashEntry<Movie*> *m) { 
+void printMovies(HashEntry<Movie*> *m) {
     std::cout << m->getItem()->getStock() << " " << m->getItem()->getTitle() << " ";
     std::cout << m->getItem()->getDirector() << " " << m->getItem()->getYear() << std::endl;
+}
+
+void Database::getCustomerMovies(const string& id) {
+
+    bool result = false;
+    for (int i = 0; i < checkedOut.size(); ++i) {
+        auto item = checkedOut.getItem(i);
+        if (item->first == id) {
+            result = true;
+            if (item->second.size() > 0) {
+                std::cout << "Customer " << id << " has the following checked out:" << std::endl;
+                for (int j = 0; j < item->second.size(); ++j) {
+                    std::cout << item->second.getItem(j) << std::endl;
+                }
+            }
+            else {
+                std::cout << "Customer " << id << " has nothing checked out." << std::endl;
+            }
+        }
+    }
+    if (result == false) {
+        std::cout << "Customer " << id << " does not exist" << std::endl;
+    }
+}
+
+void Database::borrowMovie(const string& id, string& data) {
+    // Parse information to get movie
+    if (parseSubstring(data, " ") == "D") {
+        char genre = data[0];
+        if (genre == 'C' || genre == 'D' || genre || 'F') {
+            parseSubstring(data, " ");
+
+            try {
+                if (stoi(parseSubstring(data, " ")) < 1900) {
+                    return;
+                }
+            }
+            catch (const std::exception& e) {
+                
+            }
+
+            LinkedList<string> queries;
+            string query;
+            bool running = true;
+
+            while (running) {
+                query = parseSubstring(data, " ");
+                if (query == data) {
+                    running = false;
+                }
+                query = parseSubstring(query, ",");
+                queries.add(query);
+            }
+
+
+            Movie* result = movies.getMovie(queries);
+            result = nullptr;
+            //bool result = false;
+            //if (result != true) {
+            //    //if (result->getStock() > 0) {
+            //    //
+            //    //    bool found = false;
+            //    //
+            //    //    for (int i = 0; i < checkedOut.size(); ++i) {
+            //    //        auto item = checkedOut.getItem(i);
+            //    //        if (item->first == id) {
+            //    //            if (item->second.size() > 0) {
+            //    //                for (int j = 0; j < item->second.size(); ++j) {
+            //    //                    if (item->second.getItem(j) == result->getTitle()) {
+            //    //                        return;
+            //    //                    }
+            //    //                }
+            //    //            }
+            //    //            item->second.add(result->getTitle());
+            //    //        }
+            //    //    }
+            //    //    result->setStock(result->getStock() - 1);
+            //    //}
+            //}
+        }
+    }
+
+    // If movie found
+    // Check quantity
+    // If quantity > 0
+    // Check to see if customer and movie are already in the list
+    // If the customer exists and the movie is not in the list
+    // Add the movie to the list
+    // Subtract quantity by 1
+}
+
+void Database::returnMovie(const string& id, string& data) {
+    // Parse information to get movie
+    if (parseSubstring(data, " ") == "D") {
+        char genre = data[0];
+        if (genre == 'C' || genre == 'D' || genre || 'F') {
+            parseSubstring(data, " ");
+
+            try {
+                if (stoi(parseSubstring(data, " ")) < 1900) {
+                    return;
+                }
+            }
+            catch (const std::exception& e) {
+
+            }
+
+            LinkedList<string> queries;
+            string query;
+            bool running = true;
+
+            while (running) {
+                query = parseSubstring(data, " ");
+                if (query == data) {
+                    running = false;
+                }
+                query = parseSubstring(query, ",");
+                queries.add(query);
+            }
+
+
+            Movie* result = movies.getMovie(queries);
+            result = nullptr;
+            //Movie* result = movies.getMovie(queries);
+            //bool result = false;
+            //if (result != true) {
+            //    for (int i = 0; i < checkedOut.size(); ++i) {
+            //        auto item = checkedOut.getItem(i);
+            //        if (item->first == id) {
+            //            if (item->second.size() > 0) {
+            //                for (int j = 0; j < item->second.size(); ++j) {
+            //                    //if (item->second.getItem(j) == result->getTitle()) {
+            //                    //    item->second.remove(j);
+            //                    //    result->setStock(result->getStock() + 1);
+            //                    //}
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+            //result = nullptr;
+        }
+    }
+    // Parse information to get movie
+    // If movie found
+    // Check to see if customer and movie are already in the list
+    // If the customer and movie exist
+    // remove the movie from list
+    // Increase quantity by 1
 }
 
 void Database::populate(const std::string& customerFile, const std::string& movieFile)
@@ -17,38 +166,29 @@ void Database::populate(const std::string& customerFile, const std::string& movi
 void Database::runCommand(std::string& entry)
 {
     string delimiter = " ";
-    
-    char genre = entry[0];
+
+    char command = entry[0];
     parseSubstring(entry, delimiter);
-    switch (genre) {
+    switch (command) {
     case 'I':
-        // Print out the list of movies
+        std::cout << "Inventory of movies:" << std::endl;
         movies.traverse(printMovies);
+        std::cout << std::endl;
         break;
     case 'H':
-        // Parse string to get customer
-
-        // Look up the list of movies in the hashtable
-
-        // list through all present elements
+        getCustomerMovies(parseSubstring(entry, delimiter));
         break;
     case 'B':
-        // Parse string to get customer
-
-        // If the list of movies is not empty...
-            // Check further...
-            // if found...
-                // remove from list
-                // decrease quantity by 1
+        borrowMovie(parseSubstring(entry, delimiter), entry);
         break;
     case 'R':
         // Parse string to get customer
-
+        returnMovie(parseSubstring(entry, delimiter), entry);
         // If the list of movies is not empty...
-            // Check further...
-            // if found...
-                // remove from list
-                // Increase quantity by 1
+        // Check further...
+        // if found...
+        // remove from list
+        // Increase quantity by 1
         break;
     default:
         break;
@@ -68,7 +208,7 @@ void Database::runCommands(const std::string& filename)
         file.close();
     }
     else {
-        std::cout << "customers could not be populated" << std::endl;
+        std::cout << "Commands could not be opened" << std::endl;
     }
 }
 
@@ -81,7 +221,7 @@ void Database::dump()
 
 //Private /////////////////////////////////////////////////////////////////////
 
-void Database::populateMovies(const std::string& filename){
+void Database::populateMovies(const std::string& filename) {
     string line; // Line read from file
     std::ifstream file(filename);
     string delimiter = ", ";
@@ -91,17 +231,17 @@ void Database::populateMovies(const std::string& filename){
             char genre = line[0];
             parseSubstring(line, delimiter);
             switch (genre) {
-                case 'C':
-                    addClassic(line);
-                    break;
-                case 'D':
-                    addDrama(line);
-                    break;
-                case 'F':
-                    addComedy(line);
-                    break;
-                default:
-                    continue;
+            case 'C':
+                addClassic(line);
+                break;
+            case 'D':
+                addDrama(line);
+                break;
+            case 'F':
+                addComedy(line);
+                break;
+            default:
+                continue;
             }
         }
         file.close();
@@ -120,15 +260,15 @@ void Database::populateCustomers(const std::string& filename)
     string id = "";      // ID of the person in question
 
     string delimiter = " ";
-    
+
     std::ifstream file(filename);
 
     if (file.is_open()) {
         while (std::getline(file, line)) {
-            
+
             // Get id
             id = parseSubstring(line, delimiter);
-            
+
             // We only check for a valid id, isn't worth checking other params
             // if the id isn't valid
             if (isValidCustomer(id)) {
@@ -146,6 +286,7 @@ void Database::populateCustomers(const std::string& filename)
                 // Check to see if it already exists (we don't need multiple entries)
                 if (!customers.contains(id, entry)) {
                     customers.add(id, entry);
+                    checkedOut.add(new std::pair<string, LinkedList<string>>(id, LinkedList<string>()));
                 }
             }
         }
@@ -162,7 +303,7 @@ bool Database::isValidCustomer(const string& id)
     try {
         stoi(id);
     }
-    catch(const std::exception& e) {
+    catch (const std::exception& e) {
         return false;
     }
     return true;
@@ -183,7 +324,7 @@ void Database::addComedy(string& entry)
     catch (const std::exception& e) {
         return;
     }
-    
+
     director = parseSubstring(entry);
     movie = parseSubstring(entry);
     year = parseSubstring(entry);
@@ -195,6 +336,13 @@ void Database::addComedy(string& entry)
     // Check to see if it already exists (we don't need multiple entries)
     if (!movies.contains(comedy->getKey(), comedyEntry)) {
         movies.add(comedy->getKey(), comedyEntry);
+        HashEntry<Movie*>* search = movies.find(comedy->getKey(), comedyEntry);
+        //Movie* search = (movies.find(classic->getKey(), classicEntry))->getItem();
+        if (search != nullptr) {
+            ClassicMovie* foundMovie = static_cast<ClassicMovie*>(search->getItem());
+            foundMovie->setStock(foundMovie->getStock() + 10);
+            foundMovie = nullptr;
+        }
         //std::cout << director << " " << movie << " " << year << " " << std::endl;
     }
     else {
@@ -233,9 +381,16 @@ void Database::addDrama(string& entry)
     // Check to see if it already exists (we don't need multiple entries)
     if (!movies.contains(drama->getKey(), dramaEntry)) {
         movies.add(drama->getKey(), dramaEntry);
-        //std::cout << director << " " << movie << " " << year << " " << std::endl;
     }
     else {
+        HashEntry<Movie*>* search = movies.find(drama->getKey(), dramaEntry);
+        //Movie* search = (movies.find(classic->getKey(), classicEntry))->getItem();
+        if (search != nullptr) {
+            ClassicMovie* foundMovie = static_cast<ClassicMovie*>(search->getItem());
+            foundMovie->setStock(foundMovie->getStock() + 10);
+            foundMovie = nullptr;
+        }
+
         delete drama;
         delete dramaEntry;
     }
@@ -288,6 +443,7 @@ void Database::addClassic(string& entry)
             auto list = foundMovie->getLeadActors();
             list.add(actor);
             std::cout << actor << " added to " << movie << std::endl;
+            foundMovie->setStock(foundMovie->getStock() + 10);
         }
         foundMovie = nullptr;
     }
@@ -311,6 +467,7 @@ string Database::parseSubstring(string& source, const string& delimiter) {
     if (pos != string::npos) {
         result = source.substr(0, pos);
         source.erase(0, pos + delimiter.length());
+        source.shrink_to_fit();
     }
     else {
         result = source;

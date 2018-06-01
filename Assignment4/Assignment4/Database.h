@@ -18,12 +18,17 @@ public:
 private:
     HashTable<Customer*> customers;
     HashTable<Movie*> movies;
-    HashTable<LinkedList<string>*> checkedOut;
+    LinkedList<std::pair<string, LinkedList<string>>*> checkedOut;
+
 
     void populateMovies(const std::string& filename);
     void populateCustomers(const std::string& filename);
 
-    bool isValidMovie(string& entry);
+    void getCustomerMovies(const string& id);
+    void borrowMovie(const string& id, string& data);
+    void returnMovie(const string& id, string& data);
+
+    //bool isValidMovie(string& entry);
     bool isValidCustomer(const string& id);
 
     void addComedy(string& entry);
