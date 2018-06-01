@@ -1,9 +1,15 @@
-﻿  Assignment4.cpp
+﻿  stdafx.cpp
+  Assignment4.cpp
   ClassicMovie.cpp
+  ComedyMovie.cpp
+  Customer.cpp
   Database.cpp
 c:\users\natha\documents\uw_stuff\2017-18\spring 2018\css343assignment4-master\css343assignment4-master\assignment4\assignment4\database.cpp(165): warning C4101: 'e': unreferenced local variable
 c:\users\natha\documents\uw_stuff\2017-18\spring 2018\css343assignment4-master\css343assignment4-master\assignment4\assignment4\database.cpp(183): warning C4101: 'e': unreferenced local variable
 c:\users\natha\documents\uw_stuff\2017-18\spring 2018\css343assignment4-master\css343assignment4-master\assignment4\assignment4\database.cpp(221): warning C4101: 'e': unreferenced local variable
 c:\users\natha\documents\uw_stuff\2017-18\spring 2018\css343assignment4-master\css343assignment4-master\assignment4\assignment4\database.cpp(265): warning C4101: 'e': unreferenced local variable
+  DramaMovie.cpp
+  InputValidator.cpp
+  Movie.cpp
   Generating Code...
   Assignment4.vcxproj -> C:\Users\natha\Documents\UW_Stuff\2017-18\Spring 2018\CSS343Assignment4-master\CSS343Assignment4-master\Assignment4\x64\Debug\Assignment4.exe

@@ -111,6 +111,31 @@ bool HashTable<HashItem>::contains(string key, HashEntry<HashItem>* specific)
 }
 
 template<class HashItem>
+Movie * HashTable<HashItem>::getMovie(LinkedList<string> info)
+{
+	for (int i = 0; i < 101; i++)
+	{
+		for (int j = 0; i < table[index].size(); j++)
+		{
+			HashEntry<HashItem>* h1 = table[index].getItem(i);
+			auto movieNode = dynamic_cast<HashEntry<Movie*>*>(h1);
+			int matches = 0;
+			for (int k = 0; k < info.size(); k++)
+			{
+
+				if (movieNode->getItem()->getDirector() == info[k] ||
+					movieNode->getItem()->getTitle() == info[k] ||
+					movieNode->getItem()->getYear() == info[k])
+					matches++;
+				if (matches >= 2)
+					return movieNode->getItem();
+			}
+		}
+	}
+	return nullptr;
+}
+
+template<class HashItem>
 void HashTable<HashItem>::traverse(void visit(HashEntry<HashItem>*))
 {
 	for (int i = 0; i < 101; i++)
