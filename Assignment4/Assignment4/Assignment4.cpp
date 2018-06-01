@@ -13,14 +13,16 @@
 using std::cin;
 using std::cout;
 string getMovieKey(Movie* movie) { return movie->getKey(); }
-void printMovieTitle(HashEntry<Movie*>* m) { cout << m->getItem()->getTitle() << std::endl; }
+//void printMovieTitle(HashEntry<Movie*>* m) { cout << m->getItem()->getTitle() << std::endl; }
 
 int main()
 {
     Database database;
     // Populate database
+    database.populate("data4customers.txt", "data4movies.txt");
 
     // Run commands from file
+    database.runCommands("data4commands.txt");
 
     //Dump everything we have from the file?
 
@@ -56,7 +58,7 @@ int main()
 	ht.add(movie8->getKey(), movie8);
 	ht.add(movie9->getKey(), movie9);
 
-	ht.traverse(printMovieTitle);
+	//ht.traverse(printMovieTitle);
 
 	ht.remove(movie4->getKey(), movie4);
     return 0;
