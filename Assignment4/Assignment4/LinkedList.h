@@ -1,5 +1,6 @@
 #ifndef LL_LIST
 #define LL_LIST
+#include "HashEntry.h"
 
 /*
 LinkedList is an array-like structure that creates nodes which hold the data

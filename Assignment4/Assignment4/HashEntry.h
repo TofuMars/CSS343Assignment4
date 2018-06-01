@@ -13,6 +13,7 @@ public:
 	HashEntry(string ky, HashItem itm);
 	string getKey();
 	HashItem getItem();
+	bool operator==(const HashEntry<HashItem> other) const;
 	~HashEntry();
 };
 #include "HashEntry.cpp"

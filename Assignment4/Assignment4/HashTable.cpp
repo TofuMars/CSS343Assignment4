@@ -67,8 +67,13 @@ template<class HashItem>
 HashEntry<HashItem>* HashTable<HashItem>::find(string key, HashEntry<HashItem>* specific)
 {
 	int index = calculateIndex(key);
-	int findAt = table[index].contains(specific);
-	return table[index].getItem(findAt);
+	for (int i = 0; i < table[index].size(); i++)
+	{
+		HashEntry<HashItem>* h1 = table[index].getItem(i);
+		if (*h1 == *specific)
+			return h1;
+	}
+	//return table[index].getItem(findAt);
 	//list<HashEntry<HashItem>*> listOfItems = table[index];
 	//list<HashEntry<HashItem>*>::iterator it = listOfItems.begin();
 	//while (it != table[index].end())
@@ -79,14 +84,19 @@ HashEntry<HashItem>* HashTable<HashItem>::find(string key, HashEntry<HashItem>* 
 	//	}
 	//	it++;
 	//}
-	//return nullptr;
+	return nullptr;
 }
 
 template<class HashItem>
 bool HashTable<HashItem>::contains(string key, HashEntry<HashItem>* specific)
 {
 	int index = calculateIndex(key);
-	return table[index].contains(specific) >= 0;
+	for (int i = 0; i < table[index].size(); i++)
+	{
+		HashEntry<HashItem>* h1 = table[index].getItem(i);
+		if (*h1 == *specific)
+			return true;
+	}
 	//list<HashEntry<HashItem>*> listOfItems = table[index];
 	//list<HashEntry<HashItem>*>::iterator it = listOfItems.begin();
 	//while (it != table[index].end())
@@ -97,7 +107,7 @@ bool HashTable<HashItem>::contains(string key, HashEntry<HashItem>* specific)
 	//	}
 	//	it++;
 	//}
-	//return false;
+	return false;
 }
 
 template<class HashItem>

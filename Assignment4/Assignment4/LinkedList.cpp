@@ -103,7 +103,8 @@ int LinkedList<T1>::contains(T1 item)
 	Node* temp = head;
 	int ret = 0;
 	while (temp != nullptr) {
-		if (temp->item == item) {
+		auto h1 = temp->item;
+		if (h1 == item) {
 			return ret;
 		}
 		temp = temp->next;
