@@ -1,8 +1,2 @@
 ﻿  Database.cpp
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(45): warning C4101: 'e': unreferenced local variable
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(110): warning C4101: 'e': unreferenced local variable
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(301): warning C4101: 'e': unreferenced local variable
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(319): warning C4101: 'e': unreferenced local variable
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(364): warning C4101: 'e': unreferenced local variable
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(415): warning C4101: 'e': unreferenced local variable
   Assignment4.vcxproj -> C:\Users\Nazara\Documents\GitHub\CSS343Assignment4\Assignment4\x64\Debug\Assignment4.exe

@@ -42,7 +42,7 @@ void Database::borrowMovie(const string& id, string& data) {
 					return;
 				}
 			}
-			catch (const std::exception& e) {
+			catch (const std::exception&) {
 				
 			}
 
@@ -107,7 +107,7 @@ void Database::returnMovie(const string& id, string& data) {
 					return;
 				}
 			}
-			catch (const std::exception& e) {
+			catch (const std::exception&) {
 
 			}
 
@@ -298,7 +298,7 @@ bool Database::isValidCustomer(const string& id)
 	try {
 		stoi(id);
 	}
-	catch (const std::exception& e) {
+	catch (const std::exception&) {
 		return false;
 	}
 	return true;
@@ -316,7 +316,7 @@ void Database::addComedy(string& entry)
 	try {
 		quantity = stoi(parseSubstring(entry));
 	}
-	catch (const std::exception& e) {
+	catch (const std::exception&) {
 		return;
 	}
 
@@ -361,7 +361,7 @@ void Database::addDrama(string& entry)
 	try {
 		quantity = stoi(parseSubstring(entry));
 	}
-	catch (const std::exception& e) {
+	catch (const std::exception&) {
 		return;
 	}
 
@@ -412,7 +412,7 @@ void Database::addClassic(string& entry)
 	try {
 		quantity = stoi(parseSubstring(entry));
 	}
-	catch (const std::exception& e) {
+	catch (const std::exception&) {
 		return;
 	}
 

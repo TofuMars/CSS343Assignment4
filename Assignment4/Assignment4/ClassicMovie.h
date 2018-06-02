@@ -8,7 +8,7 @@ private:
 	LinkedList<string> leadActors;
 	string month;
 public:
-	ClassicMovie(int stock, string, string, string, string, string); // follows the order of 
+	ClassicMovie(int stock, string director, string title, string year, string month, string leadActor); // follows the order of 
 																	// (stock, director, title, year, month, leadActor)
 																	// leadActor is a string that includes both the first and last name 
 	~ClassicMovie();

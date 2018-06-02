@@ -115,18 +115,18 @@ Movie * HashTable<HashItem>::getMovie(const LinkedList<string>& info)
 {
 	for (int i = 0; i < 101; i++)
 	{
-		for (int j = 0; i < table[i].size(); j++)
+		for (int j = 0; j < table[i].size(); j++)
 		{
 			HashEntry<HashItem>* h1 = table[i].getItem(j);
-            //h1->getItem()
+			//h1->getItem()
 			auto movieNode = dynamic_cast<HashEntry<Movie*>*>(h1);
 			int matches = 0;
 			for (int k = 0; k < info.size(); k++)
 			{
 
-				if (movieNode->getItem()->getDirector() == info.getItem(k) ||
-					movieNode->getItem()->getTitle() == info.getItem(k) ||
-					movieNode->getItem()->getYear() == info.getItem(k))
+				if (movieNode->getItem()->getDirector().find(info.getItem(k)) != string::npos ||
+					movieNode->getItem()->getTitle().find(info.getItem(k)) != string::npos ||
+					movieNode->getItem()->getYear().find(info.getItem(k)) != string::npos)
 					matches++;
 				if (matches >= 2)
 					return movieNode->getItem();
