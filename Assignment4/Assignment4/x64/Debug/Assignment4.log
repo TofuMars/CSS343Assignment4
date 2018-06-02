@@ -1,17 +1,8 @@
 ﻿  Database.cpp
 c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(45): warning C4101: 'e': unreferenced local variable
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(111): warning C4101: 'e': unreferenced local variable
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(306): warning C4101: 'e': unreferenced local variable
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(324): warning C4101: 'e': unreferenced local variable
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(369): warning C4101: 'e': unreferenced local variable
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(420): warning C4101: 'e': unreferenced local variable
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\hashtable.cpp(118): error C2065: 'index': undeclared identifier
-  c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\hashtable.cpp(115): note: while compiling class template member function 'Movie *HashTable<Movie *>::getMovie(LinkedList<std::string>)'
-  c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(129): note: see reference to function template instantiation 'Movie *HashTable<Movie *>::getMovie(LinkedList<std::string>)' being compiled
-  c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.h(20): note: see reference to class template instantiation 'HashTable<Movie *>' being compiled
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\hashtable.cpp(118): error C2228: left of '.size' must have class/struct/union
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\hashtable.cpp(120): error C2065: 'index': undeclared identifier
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\hashtable.cpp(120): error C2228: left of '.getItem' must have class/struct/union
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\hashtable.cpp(126): error C2676: binary '[': 'LinkedList<std::string>' does not define this operator or a conversion to a type acceptable to the predefined operator
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\hashtable.cpp(127): error C2676: binary '[': 'LinkedList<std::string>' does not define this operator or a conversion to a type acceptable to the predefined operator
-c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\hashtable.cpp(128): error C2676: binary '[': 'LinkedList<std::string>' does not define this operator or a conversion to a type acceptable to the predefined operator
+c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(110): warning C4101: 'e': unreferenced local variable
+c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(301): warning C4101: 'e': unreferenced local variable
+c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(319): warning C4101: 'e': unreferenced local variable
+c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(364): warning C4101: 'e': unreferenced local variable
+c:\users\nazara\documents\github\css343assignment4\assignment4\assignment4\database.cpp(415): warning C4101: 'e': unreferenced local variable
+  Assignment4.vcxproj -> C:\Users\Nazara\Documents\GitHub\CSS343Assignment4\Assignment4\x64\Debug\Assignment4.exe

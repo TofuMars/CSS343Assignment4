@@ -2,42 +2,37 @@
 
 
 template<class T1>
-LinkedList<T1>::LinkedList() {
-	head = nullptr;
-	back = nullptr;
-	currentSize = 0;
+LinkedList<T1>::LinkedList()
+{
 }
 
 template<class T1>
 LinkedList<T1>::LinkedList(T1 item)
+	: head{ new Node{ std::move(item) } }
+	, back{ head }
+	, currentSize{ 1 }
 {
-	Node* temp = new Node(item);
-	head = temp;
-	back = temp;
-	currentSize = 1;
 }
-
 
 template<class T1>
 LinkedList<T1>::~LinkedList()
 {
 	clear();
-	currentSize = 0;
 }
 
 template<class T1>
 void LinkedList<T1>::add(T1 item)
 {
-	Node* temp = new Node(item);
-	if(back == nullptr)
+	Node* temp = new Node{ std::move(item) };
+	if (back == nullptr)
 	{
 		back = temp;
 		head = temp;
 	}
 	else
 	{
-		if (head->next == nullptr)
-			head->next = temp;
+		//if (head->next == nullptr)
+		//	head->next = temp;
 		back->next = temp;
 		back = back->next;
 	}
@@ -47,30 +42,34 @@ void LinkedList<T1>::add(T1 item)
 template<class T1>
 T1 LinkedList<T1>::remove(int index)
 {
-	if (currentSize == 0) {
-		return nullptr;
+	if (index < 0 || index >= currentSize) {
+		throw new std::out_of_range("invalid index");
 	}
+
+	Node* toRemove;
 	if (index == 0) {
-		Node* temp = head;
+		toRemove = head;
 		head = head->next;
-		T1 ret = temp->item;
-		delete temp;
-		currentSize--;
-		return ret;
+		if (head == nullptr) {
+			back = nullptr;
+		}
 	}
 	else {
 		Node* temp = head;
 		for (int i = 0; i < index - 1; i++) {
 			temp = temp->next;
 		}
-		Node* toRemove = temp->next;
+		toRemove = temp->next;
 		temp->next = toRemove->next;
-		T1 ret = toRemove->item;
-		delete toRemove;
-		currentSize--;
-		return ret;
+		if (back == toRemove) {
+			back = temp;
+		}
 	}
 
+	T1 ret = toRemove->item;
+	delete toRemove;
+	currentSize--;
+	return ret;
 }
 
 template<class T1>
@@ -89,22 +88,22 @@ void LinkedList<T1>::clear()
 	delete toDelete;
 	currentSize = 0;
 	head = nullptr;
+	back = nullptr;
 }
 
 template<class T1>
-int LinkedList<T1>::size()
+int LinkedList<T1>::size() const
 {
 	return currentSize;
 }
 
 template<class T1>
-int LinkedList<T1>::contains(T1 item)
+int LinkedList<T1>::contains(T1 item) const
 {
 	Node* temp = head;
 	int ret = 0;
 	while (temp != nullptr) {
-		auto h1 = temp->item;
-		if (h1 == item) {
+		if (temp->item == item) {
 			return ret;
 		}
 		temp = temp->next;
@@ -114,10 +113,10 @@ int LinkedList<T1>::contains(T1 item)
 }
 
 template<class T1>
-T1 LinkedList<T1>::getItem(int index)
+T1 LinkedList<T1>::getItem(int index) const
 {
 	if (index < 0 || index >= currentSize) {
-		return nullptr;
+		throw new std::out_of_range("invalid index");
 	}
 	Node* temp = head;
 	for (int i = 0; i < index; i++) {
@@ -128,7 +127,7 @@ T1 LinkedList<T1>::getItem(int index)
 }
 
 template<class T1>
-void LinkedList<T1>::traverse(void visit(T1 item))
+void LinkedList<T1>::traverse(void visit(T1 item)) const
 {
 	Node* temp = head;
 	while (temp != nullptr) {

@@ -111,21 +111,22 @@ bool HashTable<HashItem>::contains(string key, HashEntry<HashItem>* specific)
 }
 
 template<class HashItem>
-Movie * HashTable<HashItem>::getMovie(LinkedList<string> info)
+Movie * HashTable<HashItem>::getMovie(const LinkedList<string>& info)
 {
 	for (int i = 0; i < 101; i++)
 	{
 		for (int j = 0; i < table[i].size(); j++)
 		{
 			HashEntry<HashItem>* h1 = table[i].getItem(j);
+            //h1->getItem()
 			auto movieNode = dynamic_cast<HashEntry<Movie*>*>(h1);
 			int matches = 0;
 			for (int k = 0; k < info.size(); k++)
 			{
 
-				if (movieNode->getItem()->getDirector() == info[k] ||
-					movieNode->getItem()->getTitle() == info[k] ||
-					movieNode->getItem()->getYear() == info[k])
+				if (movieNode->getItem()->getDirector() == info.getItem(k) ||
+					movieNode->getItem()->getTitle() == info.getItem(k) ||
+					movieNode->getItem()->getYear() == info.getItem(k))
 					matches++;
 				if (matches >= 2)
 					return movieNode->getItem();

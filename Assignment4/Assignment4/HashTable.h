@@ -23,7 +23,7 @@ public:
 	void remove(string, HashEntry<HashItem>*);
 	HashEntry<HashItem>* find(string, HashEntry<HashItem>*);
 	bool contains(string, HashEntry<HashItem>*);
-	Movie* getMovie(LinkedList<string> info);
+	Movie* getMovie(const LinkedList<string>& info);
 	void traverse(void visit (HashEntry<HashItem>*));
 	void clear();
 };

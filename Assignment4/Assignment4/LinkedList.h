@@ -12,26 +12,26 @@ class LinkedList {
 	Node structure to hold the item and the next location
 	*/
 	struct Node {
-		Node* next;
+		Node* next{ nullptr };
 		T1 item;
-		Node(T1 in) { item = in; next = nullptr; }
+		Node(T1 in) : item{ std::move(in) } {}
 	};
 
 private:
 	/*
 	Holds the first element's data
 	*/
-	Node* head;
+	Node* head{ nullptr };
 
 	/*
 	O(1) for add()
 	*/
-	Node* back;
+	Node* back{ nullptr };
 
 	/*
 	O(1) for finding the size
 	*/
-	int currentSize;
+	int currentSize{ 0 };
 public:
 
 	/*
@@ -67,24 +67,24 @@ public:
 	/*
 	Returns the size of the LinkedList
 	*/
-	int size();
+	int size() const;
 
 	/*
 	Checks whether item is found within the LinkedList,
 	if so, returns the index, returns -1 otherwise
 	*/
-	int contains(T1 item);
+	int contains(T1 item) const;
 
 	/*
 	Returns the item at the given index. If index is too
 	big, returns nullptr. If index is negative, returns nullptr
 	*/
-	T1 getItem(int index);
+	T1 getItem(int index) const;
 
 	/*
 	Preforms the visit fuction on all items within the list
 	*/
-	void traverse(void visit(T1 item));
+	void traverse(void visit(T1 item)) const;
 
 };
 #include "LinkedList.cpp"
