@@ -12,8 +12,6 @@
 
 using std::cin;
 using std::cout;
-string getMovieKey(Movie* movie) { return movie->getKey(); }
-//void printMovieTitle(HashEntry<Movie*>* m) { cout << m->getItem()->getTitle() << std::endl; }
 
 int main()
 {
