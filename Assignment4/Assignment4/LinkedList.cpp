@@ -1,16 +1,11 @@
 #include "LinkedList.h"
 
-/*
-No items being added to the list
-*/
+
 template<class T1>
 LinkedList<T1>::LinkedList()
 {
 }
 
-/*
-For adding a single element upon creation
-*/
 template<class T1>
 LinkedList<T1>::LinkedList(T1 item)
 	: head{ new Node{ std::move(item) } }
@@ -19,18 +14,12 @@ LinkedList<T1>::LinkedList(T1 item)
 {
 }
 
-/*
-Deleting all nodes through clear()
-*/
 template<class T1>
 LinkedList<T1>::~LinkedList()
 {
 	clear();
 }
 
-/*
-Adding an item to the back of the list
-*/
 template<class T1>
 void LinkedList<T1>::add(T1 item)
 {
@@ -50,18 +39,15 @@ void LinkedList<T1>::add(T1 item)
 	currentSize++;
 }
 
-/*
-Takes out the item at the specified index
-*/
 template<class T1>
 T1 LinkedList<T1>::remove(int index)
 {
-	if (index < 0 || index >= currentSize) { //For invalid indexes
+	if (index < 0 || index >= currentSize) {
 		throw new std::out_of_range("invalid index");
 	}
 
 	Node* toRemove;
-	if (index == 0) { //removing a head node
+	if (index == 0) {
 		toRemove = head;
 		head = head->next;
 		if (head == nullptr) {
@@ -70,10 +56,10 @@ T1 LinkedList<T1>::remove(int index)
 	}
 	else {
 		Node* temp = head;
-		for (int i = 0; i < index - 1; i++) {//move until node to delete
+		for (int i = 0; i < index - 1; i++) {
 			temp = temp->next;
 		}
-		toRemove = temp->next; 
+		toRemove = temp->next;
 		temp->next = toRemove->next;
 		if (back == toRemove) {
 			back = temp;
@@ -83,20 +69,16 @@ T1 LinkedList<T1>::remove(int index)
 	T1 ret = toRemove->item;
 	delete toRemove;
 	currentSize--;
-	return ret;//returns the deleted node item
+	return ret;
 }
 
-/*
-Deleting a whole list. Keeps track of the before
-and the after node so that it hits every node
-*/
 template<class T1>
 void LinkedList<T1>::clear()
 {
-	if (currentSize == 0) { 
+	if (currentSize == 0) {
 		return;
 	}
-	Node* toDelete = head; 
+	Node* toDelete = head;
 	Node* nextDelete = head->next;
 	while (nextDelete != nullptr) {
 		delete toDelete;
@@ -115,11 +97,6 @@ int LinkedList<T1>::size() const
 	return currentSize;
 }
 
-/*
-Goes through each item one by one until it
-finds the item or gets to the end of the list
-returns the index of the given item
-*/
 template<class T1>
 int LinkedList<T1>::contains(T1 item) const
 {
@@ -135,10 +112,6 @@ int LinkedList<T1>::contains(T1 item) const
 	return -1;
 }
 
-/*
-Returns the item at the specified index
-returns a reference to the item
-*/
 template<class T1>
 T1 LinkedList<T1>::getItem(int index) const
 {
@@ -153,10 +126,6 @@ T1 LinkedList<T1>::getItem(int index) const
 	return ret;
 }
 
-/*
-Goes through each item and preforms the visit function
-on each item.
-*/
 template<class T1>
 void LinkedList<T1>::traverse(void visit(T1 item)) const
 {

@@ -1,6 +1,7 @@
 #include <string>
 #pragma once
 using std::string;
+// base class for movies
 class Movie
 {
 protected:

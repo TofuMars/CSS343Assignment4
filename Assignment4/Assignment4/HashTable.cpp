@@ -2,6 +2,8 @@
 #include "HashTable.h"
 #include "LinkedList.h"
 #include <iterator>
+
+// Calculates the array index by summing all the ASCII characters and modulating the sum by 101
 template<class HashItem>
 int HashTable<HashItem>::calculateIndex(string key)
 {
@@ -27,134 +29,94 @@ template<class HashItem>
 void HashTable<HashItem>::add(string key, HashEntry<HashItem>* item)
 {
 	int calculatedIndex = calculateIndex(item->getKey()); // calculate index
-	if (table[calculatedIndex].size() == 0)
+	if (table[calculatedIndex].size() == 0) // check if the list  size is 0 then adds
 	{
 		table[calculatedIndex].add(item);
 	}
 	else
 		table[calculatedIndex].add(item);
-	//if (table[calculatedIndex].size() == 0) // if first entry, instantiate list and add
-	//{
-	//	table[calculatedIndex] = list<HashEntry<HashItem>*>();
-	//	table[calculatedIndex].push_back(item);
-	//}
-	//else // list exists, add to the back of the list
-	//	table[calculatedIndex].push_back(item);
 }
 
+// Removes a specific entry at a given hashkey
 template<class HashItem>
 void HashTable<HashItem>::remove(string key, HashEntry<HashItem>* specific)
 {
-	int index = calculateIndex(key);
-	int removeAt = table[index].contains(specific);
+	int index = calculateIndex(key); // calculate index
+	int removeAt = table[index].contains(specific); // find iterator position at linked list
 	if (removeAt >= 0)
-		table[index].remove(removeAt);
-	//list<HashEntry<HashItem>*> listOfItems = table[index]; // iterate through the list
-
-	//list<HashEntry<HashItem>*>::iterator it = listOfItems.begin();
-	//while (it != table[index].end())
-	//{
-	//	if (it._Ptr->_Myval->getItem() == specific->getItem()) // if the items match, it is the element to be deleted
-	//	{
-	//		table[index].erase(it);
-	//		break;
-	//	}
-	//	it++;
-	//}
+		table[index].remove(removeAt); // remove the entry if it exists
 }
 
 template<class HashItem>
 HashEntry<HashItem>* HashTable<HashItem>::find(string key, HashEntry<HashItem>* specific)
 {
 	int index = calculateIndex(key);
-	for (int i = 0; i < table[index].size(); i++)
+	for (int i = 0; i < table[index].size(); i++) // traverse the linked list
 	{
-		HashEntry<HashItem>* h1 = table[index].getItem(i);
-		if (*h1 == *specific)
+		HashEntry<HashItem>* h1 = table[index].getItem(i); // if the hashitem at the node equals the specific item
+		if (*h1 == *specific) // return it
 			return h1;
 	}
-	//return table[index].getItem(findAt);
-	//list<HashEntry<HashItem>*> listOfItems = table[index];
-	//list<HashEntry<HashItem>*>::iterator it = listOfItems.begin();
-	//while (it != table[index].end())
-	//{
-	//	if (it._Ptr->_Myval->getItem() == specific->getItem())
-	//	{
-	//		return it._Ptr->_Myval; 
-	//	}
-	//	it++;
-	//}
-	return nullptr;
+	return nullptr; // not found
 }
 
 template<class HashItem>
 bool HashTable<HashItem>::contains(string key, HashEntry<HashItem>* specific)
 {
 	int index = calculateIndex(key);
-	for (int i = 0; i < table[index].size(); i++)
+	for (int i = 0; i < table[index].size(); i++) // traverse the linked list
 	{
 		HashEntry<HashItem>* h1 = table[index].getItem(i);
-		if (*h1 == *specific)
+		if (*h1 == *specific) // if it matches, we know the list contains the specific entry
 			return true;
 	}
-	//list<HashEntry<HashItem>*> listOfItems = table[index];
-	//list<HashEntry<HashItem>*>::iterator it = listOfItems.begin();
-	//while (it != table[index].end())
-	//{
-	//	if (it._Ptr->_Myval->getItem() == specific->getItem())
-	//	{
-	//		return true;
-	//	}
-	//	it++;
-	//}
-	return false;
+	return false; // not found
 }
 
+// Gets a movie by traversing the whole dictionary, given a linked list of strings as
+// search criteria
+// Assumption: the Hashtable is a Hashtable of movies
 template<class HashItem>
 Movie * HashTable<HashItem>::getMovie(const LinkedList<string>& info)
 {
-	for (int i = 0; i < 101; i++)
+	for (int i = 0; i < 101; i++) // for each cell in the hashtable
 	{
-		for (int j = 0; j < table[i].size(); j++)
+		for (int j = 0; j < table[i].size(); j++) // for each linked list in the cell
 		{
-			HashEntry<HashItem>* h1 = table[i].getItem(j);
-			//h1->getItem()
-			auto movieNode = dynamic_cast<HashEntry<Movie*>*>(h1);
-			int matches = 0;
+			HashEntry<HashItem>* h1 = table[i].getItem(j); // get the item from the node
+			
+			auto movieNode = dynamic_cast<HashEntry<Movie*>*>(h1); // cast it as a movie hashentry 
+			int matches = 0; // determines whether we found the correct movie through matches
+
 			for (int k = 0; k < info.size(); k++)
 			{
-
+				// increase the number of matches if the director, title, year, are the same
 				if (movieNode->getItem()->getDirector().find(info.getItem(k)) != string::npos ||
 					movieNode->getItem()->getTitle().find(info.getItem(k)) != string::npos ||
 					movieNode->getItem()->getYear().find(info.getItem(k)) != string::npos)
 					matches++;
-				if (matches >= 2)
+				if (matches >= 2) // if the matches are 2, then we found the movie
 					return movieNode->getItem();
 			}
 		}
 	}
-	return nullptr;
+	return nullptr; // movie not found
 }
 
+// performs a void hashentry method to every item in the dictionary
 template<class HashItem>
 void HashTable<HashItem>::traverse(void visit(HashEntry<HashItem>*))
 {
-	for (int i = 0; i < 101; i++)
+	for (int i = 0; i < 101; i++) // traverse all the cells
 	{
-		table[i].traverse(visit);
-		//list<HashEntry<HashItem>*> listOfItems = table[i];
-		//list<HashEntry<HashItem>*>::iterator it = listOfItems.begin();
-		//while (it != table[i].end())
-		//{
-		//	visit(it._Ptr->MyVal);
-		//	it++;
-		//}
+		table[i].traverse(visit); // traverse each linked list
 	}
 }
 
+// clears every node in the dictionary. Empties it.
 template<class HashItem>
 void HashTable<HashItem>::clear()
 {
-	for (int i = 0; i < 101; i++)
+	for (int i = 0; i < 101; i++) // call clear for every linked list to remove
 		table[i].clear();
 }
